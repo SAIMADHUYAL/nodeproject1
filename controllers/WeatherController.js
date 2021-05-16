@@ -3,52 +3,53 @@ const router = express.Router();
 const request = require('request');
 const weatherUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=charlotte&mode=json&units=metric&cnt=4&appid=fbf712a5a83d7305c3cda4ca8fe7ef29";
 
+const iplocate = require("node-iplocate")
+const publicIp = require('public-ip')
 
-function getWeather(url) {
-    console.log(url+"weathercontroller");
-    // Setting URL and headers for request
-    var options = {
-        url: weatherUrl,
-        headers: {
-            'User-Agent': 'request'
-        }
-    };
-    // Return new promise 
-    return new Promise(function(resolve, reject) {
-        // Do async job
-        request.get(options, function(err, resp, body) {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(body);
-            }
-        })
-    })
-}
 
-// Weather Api Route
-router.get('/promise',(req,res) => {
-    var dataPromise = getWeather();
-    // Get user details after that get followers from URL
-    dataPromise.then(JSON.parse)
-               .then(function(result) {
-                    res.render('customerView/home',{result})
-                })
-})
 
-//Weather Api Without promise
-router.get('/weatherwithoutpromise',(req,res) => {
-    // console.log("weatherwithoutpromise")
-    request(weatherUrl, (err,response,body) =>{
-        if(err){
-            // console.log(err);
-        } else {
-           
-            const output = JSON.parse(body);
-            console.log(output);
-            res.send(output);
-        }
-    });
-});
+// const userloc = async ()=>{
+//     try{
+//         const ip = await publicIp.v4()
+//         console.log("ip : ", ip)
+//         return await iplocate(ip)    
+//     }catch(err){
+//         console.log(err)
+//     }
+// }
+
+// const getWeather = async (lon, lat) =>{
+//     const apikey = 'fbf712a5a83d7305c3cda4ca8fe7ef29'
+//     const apiUrl = `http://api.openweathermap.org/data/2.5/weather?lon=${lon}&lat=${lat}&appid=${apikey}&units=metric`
+//     console.log("getWeather : apiUrl : ", apiUrl)
+//     try{
+//         return await axios.get(apiUrl)
+//     }catch(err){
+//         console.log(err)
+//     }
+// }
+// router.get('/getWeather', (req,res)=>{
+
+//     userloc().then((loc)=>{  
+//         const lon = loc.longitude
+//         const lat = loc.latitude
+//         console.log(`lon: ${lon}, lat: ${lat}`)
+
+//         getWeather(lon,lat).then((response)=>{
+//             const weather = {
+//                 description: response.data.weather[0].main,
+//                 icon: "http://openweathermap.org/img/w/" + response.data.weather[0].icon + ".png",
+//                 temperature: response.data.main.temp,
+//                 temp_min: response.data.main.temp_min,
+//                 temp_max: response.data.main.temp_max,
+//                 city: response.data.name
+//             }
+//             console.log("weather: ", weather)
+//             res.render('home', {
+//                 weather
+//             })
+//         })
+//     })
+// })
 
 module.exports = router;

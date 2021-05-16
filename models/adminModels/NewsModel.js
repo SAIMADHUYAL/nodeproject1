@@ -6,8 +6,8 @@ const newsModel = new Schema({
     description: {type:String},
     url: {type:String},
     url_to_image: {type:String},
-    publishedOn: {type:String},
-    category: {type: String}
+    publishedat: {type:String},
+    insertTime: {type:Number}
 })
 
 // model name : news

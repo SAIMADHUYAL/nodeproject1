@@ -9,7 +9,7 @@ const port = process.env.PORT || 3000;
 var indexRouter = require('./routes/index');
 var homeRouter = require('./routes/customer-routes/home');
 //var usersRouter = require('./routes/users');
-const WeatherController = require('./controllers/WeatherController');
+//const WeatherController = require('./controllers/WeatherController');
 const AdminController = require('./controllers/AdminController');
 const addNews = require('./routes/admin-routes/addNews');
 const News = require('./models/adminModels/NewsModel');
@@ -34,7 +34,7 @@ app.use('/', homeRouter);
 app.use('/addNews' , addNews);
 
 //For Weather Controller routing
-app.use('/getWeather', WeatherController);
+//app.use('/getWeather', WeatherController);
 
 //For Admin Controller
 app.use('/admin',AdminController);
