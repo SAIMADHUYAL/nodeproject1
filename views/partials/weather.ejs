@@ -3,35 +3,28 @@
         <img class="card-img-top" src='../images/weather-icon.png' alt="weather" />
         <span>
             <h1 class= "text-center">
-                <%=result.city.name%>
+                <%=weather.city%>
             </h1>
         </span>
     </div>
-    <%for(let i=0; i<result.list.length;i++){%>
+    
         <div class="card col-md-2">
 
             <div class="card-body">
                 <span class="topTemp text-primary">
                     <h1>
-                        <%=result.list[i].temp.day.toFixed(1)%>°C
+                        <%=weather.temperature%>°C
                     </h1>
                 </span>
                 <span class="max ">
-                    <%=result.list[i].temp.max%>
+                    <%=weather.temp_max%>
                 </span> /
                 <span class="min">
-                    <%=result.list[i].temp.min%>°C
+                    <%=weather.temp_min%>°C
                 </span>
                 <h4 class="card-title">
-                    <%=result.list[i].weather[0].main%>
+                    <%=weather.description%>
                 </h4>
-                <p class="card-text">
-
-
-                <p>Humidity: <%=result.list[i].humidity%>%</p>
-
-                </p>
             </div>
         </div>
-        <%}%>
 </div>

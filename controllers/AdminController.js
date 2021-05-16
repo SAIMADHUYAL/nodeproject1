@@ -35,8 +35,8 @@ router.post('/addNews', (req,res) => {
     //         if (!user) {res.redirect('/')}
             
 
-            const d = new Date();
-            const news = new News({...req.body, publishedOn: dateFormat(d) })
+            const d = Date.now();
+            const news = new News({...req.body, insertTime: d  })
             
             news.save(
                 (err, data) => {
