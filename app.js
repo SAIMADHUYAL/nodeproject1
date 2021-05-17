@@ -1,10 +1,13 @@
 var createError = require('http-errors');
+var http = require('http');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const db = require('./db');
 const port = process.env.PORT || 3000;
+
+//const socketio = require('socket.io'); 
 
 var indexRouter = require('./routes/index');
 var homeRouter = require('./routes/customer-routes/home');
@@ -55,9 +58,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-
-
 
 
 app.listen(port, (err) => {
