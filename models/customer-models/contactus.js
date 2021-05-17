@@ -17,5 +17,7 @@ const contactdetailsSchema = mongoose.Schema({
     
 
 });
-const contactdetails = mongoose.model('contactus', contactdetailsSchema);
-module.exports = contactdetails;
+// const contactdetails = mongoose.model('contactus', contactdetailsSchema);
+// module.exports = contactdetails;
+
+module.exports = mongoose.model('query', contactdetailsSchema, 'contactus');

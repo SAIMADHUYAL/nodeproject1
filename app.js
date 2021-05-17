@@ -13,6 +13,7 @@ var homeRouter = require('./routes/customer-routes/home');
 const AdminController = require('./controllers/AdminController');
 const addNews = require('./routes/admin-routes/addNews');
 const News = require('./models/adminModels/NewsModel');
+const contactController = require('./controllers/ContactController');
 
 
 var app = express();
@@ -40,6 +41,8 @@ app.use('/addNews' , addNews);
 
 //For Admin Controller
 app.use('/admin',AdminController);
+
+app.use('/contactus',contactController);
 
 
 // catch 404 and forward to error handler
