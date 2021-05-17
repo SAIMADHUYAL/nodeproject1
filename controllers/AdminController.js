@@ -38,7 +38,7 @@ router.post('/addNews', (req,res) => {
             const d = Date.now();
             const news = new News({...req.body, insertTime: d  })
             
-            news.save(
+            news.create(
                 (err, data) => {
                 if(err) return res.status(500).send('There was a problem adding news')
                 console.log(`Inserted ... ${data} `)
