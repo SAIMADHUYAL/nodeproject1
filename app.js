@@ -15,6 +15,7 @@ var homeRouter = require('./routes/customer-routes/home');
 //const WeatherController = require('./controllers/WeatherController');
 const AdminController = require('./controllers/AdminController');
 const addNews = require('./routes/admin-routes/addNews');
+const editNews = require('./routes/admin-routes/editNews');
 const News = require('./models/adminModels/NewsModel');
 
 
@@ -34,6 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', homeRouter);
 //app.use('/users', usersRouter);
+app.use('/addNews' , addNews);
 app.use('/addNews' , addNews);
 
 //For Weather Controller routing
