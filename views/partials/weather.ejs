@@ -1,6 +1,7 @@
-<div class="row">
+
+<!--<div class="row">
     <div class="card col-md-2">
-        <img class="card-img-top" src='../images/weather-icon.png' alt="weather" />
+        <img src= "<%= weather.icon %>" alt="weather" class="img-thumbnail">
         <span>
             <h1 class= "text-center">
                 <%=weather.city%>
@@ -27,4 +28,33 @@
                 </h4>
             </div>
         </div>
+</div>-->
+
+
+
+<div class="jumbotron jumbotron-fluid" style="margin: 5%;">
+    <div class="row">
+        <div class="col-md-2"> <h1>Weather</h1></div>
+        <div class="col-md-2"><h1 class="text-success"> <%=weather.city%></h1></div>
+        <div class="col-md-2"><img src= "<%= weather.icon %>" alt="weather" class="img-thumbnail"></div>
+        <div class="col-md-2">
+            <span class="topTemp text-success">
+                <h1>
+                 <%=weather.temperature%>°C
+                </h1>
+            </span>
+        </div>
+        <div class="col-md-2 text-success">
+            <span class="max ">
+                <%=weather.temp_max%>
+            </span> /
+            <span class="min">
+                <%=weather.temp_min%>°C
+            </span>
+            <h4 class="card-title">
+                <%=weather.description%>
+            </h4>
+        </div>
+        
+    </div>
 </div>
