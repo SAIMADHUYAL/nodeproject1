@@ -1,23 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <%- include('../partials/head'); %>
-</head>
+    <head>
+        <title></title>
+         <%- include('../partials/head'); %>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+    </head>
+    <body>
+        <header>
+            <%- include('../partials/header'); -%>
+        </header>
 
-<body>
+        <main>
+            <div class="container">
+                <br>
+                <table class="table" id="myTable">
+                    <thead>
+                      <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Published At</th>
+                        <th scope="col">Edit/Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0; i<data.length; i++) { %>
+                        <tr>
+                            <th><%= data[i].title %></th>
+                            <td><%= data[i].description %></td>
+                            <td><%= data[i].publishedat %></td>
+                            <td>demo</td>
+                        </tr>
+                      <% } %>
+                    </tbody>
+                  </table>
+            </div>
+        </main>
 
-    <header>
-        <%- include('../partials/header'); -%>
-    </header>
+        <footer>
+            <%- include('../partials/footer'); -%>
+        </footer>
 
-    <main>
+    </body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
         
-    </main>
-
-    <footer>
-        <%- include('../partials/footer'); -%>
-    </footer>
-</body>
+    <script>
+        $(document).ready( function () {
+            $('#myTable').DataTable();
+        });   
+    </script>
 
 </html>

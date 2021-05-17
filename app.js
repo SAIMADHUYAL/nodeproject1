@@ -13,7 +13,10 @@ var indexRouter = require('./routes/index');
 var homeRouter = require('./routes/customer-routes/home');
 //var usersRouter = require('./routes/users');
 //const WeatherController = require('./controllers/WeatherController');
+
 const AdminController = require('./controllers/AdminController');
+//const AdminController = require('./admin/AdminController');
+
 const addNews = require('./routes/admin-routes/addNews');
 const editNews = require('./routes/admin-routes/editNews');
 const News = require('./models/adminModels/NewsModel');
@@ -36,7 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', homeRouter);
 //app.use('/users', usersRouter);
 app.use('/addNews' , addNews);
-app.use('/addNews' , addNews);
+app.use('/editNews' , editNews);
 
 //For Weather Controller routing
 //app.use('/getWeather', WeatherController);
