@@ -1,5 +1,4 @@
 var createError = require('http-errors');
-var http = require('http');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -7,12 +6,10 @@ var logger = require('morgan');
 const db = require('./db');
 const port = process.env.PORT || 3000;
 
-//const socketio = require('socket.io'); 
 
 var indexRouter = require('./routes/index');
 var homeRouter = require('./routes/customer-routes/home');
-//var usersRouter = require('./routes/users');
-//const WeatherController = require('./controllers/WeatherController');
+
 const AdminController = require('./controllers/AdminController');
 const addNews = require('./routes/admin-routes/addNews');
 const News = require('./models/adminModels/NewsModel');
@@ -20,9 +17,13 @@ const News = require('./models/adminModels/NewsModel');
 
 var app = express();
 
-// view engine setup
-//app.set('views', path.join(__dirname, 'views'));
-//app.set('views', [__dirname + '/views', __dirname + '/views/adminView']);
+
+//Chat box working
+
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+
+
 app.set('views',['./views','./views/customerView','./views/adminView']);
 app.set('view engine', 'ejs');
 
@@ -33,11 +34,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', homeRouter);
-//app.use('/users', usersRouter);
+
 app.use('/addNews' , addNews);
 
-//For Weather Controller routing
-//app.use('/getWeather', WeatherController);
 
 //For Admin Controller
 app.use('/admin',AdminController);
@@ -60,10 +59,35 @@ app.use(function(err, req, res, next) {
 });
 
 
-app.listen(port, (err) => {
+//chat box working
+http.listen(port, (err) => {
 	if (err)
 		throw err;
 	console.log(`Listening on port ${port}...`);
 });
+
+// app.listen(port, (err) => {
+// 	if (err)
+// 		throw err;
+// 	console.log(`Listening on port ${port}...`);
+// });
+
+// Event handler that is emitted when client connects.
+io.on('connection', (socket) => {
+    console.log('A client has connected to the server!');
+
+    // Event handler that is emitted when a message is sent.
+    socket.on('msg', (data) => {
+        // Send a new message to everyone in the chat room.
+        io.sockets.emit('newmsg', data);
+    });
+
+    // Event handler that is emitted when client is disconnected.
+    socket.on('disconnect', () => {
+        console.log('A client has disconnected from the server!');
+    });
+});
+
+
 
 module.exports = app;
