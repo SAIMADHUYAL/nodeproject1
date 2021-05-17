@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        
+        <link rel="stylesheet" href="aboutus_styles.css">
+
+        <!-- jQuery needs to be placed before bootstrap -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        
+        <!-- Bootstrap Start -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <!-- Bootstrap End -->
+    </head>
+
+<body>
+
+    <header>
+        <%- include('../partials/header'); -%>
+    </header>
+
+    <main>
+
+        <div class="jumbotron">
+            <div align="center">
+                
+
+                <div class="container">
+                
+                <form action="/contactus" method="POST">
+
+                    <div class="form-group row">
+                        <label for="title" class="col-sm-4 col-form-label"></label>
+                        <div class="col-sm-8">
+                            <h2> Contact Us </h2>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="email" class="col-sm-4 col-form-label">Email</label>
+                        <div class="col-sm-4">
+                            <input type="email" class="form-control form-control-sm" id="email" name="email">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="query" class="col-sm-4 col-form-label">Query</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control form-control-sm" id="query" name="query">
+                        </div>
+                    </div>                
+        
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                        </div>
+                        <div class="col-sm-8">
+                            <button class= "btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); -%>
+    </footer>
+</body>
+
+</html>

@@ -79,4 +79,8 @@ router.get('/about', function (req, res) {
 	res.render('about', { title: 'About' });
 });
 
+router.get('/contactus', function (req, res) {
+	res.render('contactus', { title: 'contactus' });
+});
+
 module.exports = router;
