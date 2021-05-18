@@ -1,23 +1,45 @@
-<section class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 float-right">
+<button class="btn btn-primary rounded" style="position: fixed;bottom: 50px; right: 10px;" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Chat Box
+  </button>
+  <div class="collapse" id="collapseExample">
+<section class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12  fixed-bottom float-right">
     <div class="card">
         <div class="card-header">24x7 News Chat Box</div>
+
+        
         <div class="card-body height3">
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <input type="text" name="nickname" class="form-control" id="nickname" value=""
+                        placeholder="Enter Nick Name" />
+                </div>
+                <div class="col-sm-4">
+                    <button class="btn btn-dark btn-block" type="button" name="button"
+                        onClick="setNickName()">Set Nickname</button>
+                </div>
+            </div>
             <script>
                 // User controller?
 
                 const socket = io();
-
+                function setNickName(){
+                    const name = document.getElementById("nickname");
+                    if(name.value != ''){
+                        document.getElementById("nickname").disabled = true;
+                    }
+                }
                 function sendMessage() {
                     const msg = document.getElementById("message").value;
+                    const name = document.getElementById("nickname").value;
                     document.getElementById("message").value = ""; // Clear input box after sending message.
                     console.log("Message sent: ", msg);
 
                     if (msg && msg.trim() !== '')
-                        socket.emit("msg", { message: "[" + new Date().toGMTString() + "] " + msg }); // data.message
+                        socket.emit("msg", { message: "[" + name + "] " + msg }); // data.message
                 }
 
                 socket.on("newmsg", (data) => {
-                    document.getElementById('message-container').innerHTML += '<div><li>' + data.message + '</li></div>';
+                    document.getElementById('message-container').innerHTML += '<div><h3>' + data.message + '</h3></div>';
                 });
             </script>
 
@@ -43,3 +65,4 @@
 </div>
 </div>
 </section>
+</div>
