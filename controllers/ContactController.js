@@ -26,8 +26,9 @@ router.post('/', (req,res) => {
                 (err, data) => {
                 if(err) return res.status(500).send('There was a problem adding news')
                 console.log(`Inserted ... ${data} `)
+                //alert('Your Query has been Submitted');
                 res.redirect('/contactus');
-            })            
+            })         
 })
 
 module.exports = router

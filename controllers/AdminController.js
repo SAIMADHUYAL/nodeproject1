@@ -71,9 +71,11 @@ router.get('/addNews', (req, res) => {
         User.findById(decoded.id, { password: 0 }, (err, user) => {
             if (err) { res.redirect('/') }
             if (!user) { res.redirect('/') }
+            //console.log(user);
+            res.render('addNews');
         })
     })
-    res.render('addNews');
+    
 });
 
 router.get('/dataNews',(req,res)=>{
@@ -163,8 +165,9 @@ router.post('/login', (req, res) => {
         localStorage.setItem('authtoken', token)
         // req.session.isLoggedIn = true;
         // console.log('admin:'+req.session.isLoggedIn)
-        res.redirect(`/admin/addNews`)
+        res.redirect(`/admin/addNews`);
       }
+      //res.render('/admin/addNews',{users:user});
     });
 });
 
