@@ -8,20 +8,13 @@ const app = express();
 app.use(express.static(__dirname+'/public'));
 app.set('view engine', 'ejs');
 app.set('views', './views/adminView');
-const News = require('../../models/adminModels/NewsModel');
 
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
 router.get('/', (req, res) =>{
-
-	News.find({}).exec( (err,data)=>{
-		console.log(err)
-
-		console.log("news : ", data)
-		res.render('editNews', { data })
-	})
+	res.render('login');
 });
 
 module.exports = router;

@@ -5,7 +5,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const db = require('./db');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 //const socketio = require('socket.io'); 
 
@@ -16,9 +16,13 @@ var homeRouter = require('./routes/customer-routes/home');
 
 const AdminController = require('./controllers/AdminController');
 //const AdminController = require('./admin/AdminController');
+const AuthController = require('./controllers/AuthController');
 
 const addNews = require('./routes/admin-routes/addNews');
 const editNews = require('./routes/admin-routes/editNews');
+const loginAdmin = require('./routes/admin-routes/login');
+const deleteNews = require('./routes/admin-routes/deleteNews');
+
 const News = require('./models/adminModels/NewsModel');
 
 
@@ -40,12 +44,15 @@ app.use('/', homeRouter);
 //app.use('/users', usersRouter);
 app.use('/addNews' , addNews);
 app.use('/editNews' , editNews);
+app.use('/deleteNews' , deleteNews);
+app.use('/login' , loginAdmin);
 
 //For Weather Controller routing
 //app.use('/getWeather', WeatherController);
 
 //For Admin Controller
 app.use('/admin',AdminController);
+app.use('/auth',AuthController);
 
 
 // catch 404 and forward to error handler

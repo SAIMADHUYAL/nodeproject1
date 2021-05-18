@@ -43,7 +43,7 @@ router.post('/addNews', (req,res) => {
                 if(err) return res.status(500).send('There was a problem adding news')
                 console.log(`Inserted ... ${data} `)
                 //const htmlMsg = encodeURIComponent('Adding News DONE !');
-                res.redirect('/');
+                res.redirect('/editNews');
             })            
        // });
    // });
@@ -67,6 +67,60 @@ router.get('/addNews', (req, res) => {
     res.render('addNews');
 });
 
+router.get('/login', function (req, res) {
+    User.find({}, function (err, users) {
+        if (err) return res.status(500).send("There was a problem finding the users.");
+        res.status(200).send(users);
+    });
+});
+
+router.get('/logout', (req,res) => {
+    localStorage.removeItem('authtoken');
+    res.redirect('/login');
+})
+
+
+router.post('/find_by_id', (req,res)=>{
+    const id = req.body.id
+    console.log("/find_by_id : id : ", id)
+    News.find({_id: id}, (err,data)=>{
+        if(err) res.status(500).send(err)
+        else{
+            console.log("/find_by_id : data : ", data)
+            res.send(data)
+        }
+    })
+})
+
+router.put('/updateNews', (req,res)=>{
+    const id = req.body.id
+    console.log("/updateNews : id : ", id)
+    News.findOneAndUpdate({_id: id},{
+        $set:{
+            title: req.body.title,
+            description: req.body.description,
+            url: req.body.url,
+            url_to_image: req.body.url_to_image,
+            publishedat: req.body.publishedat,
+            insertTime: Date.now()
+        }
+    },{
+        upsert: true
+    }, (err,result)=>{
+        if(err) return res.send(err)
+        res.send("Updated ...")
+    }) 
+})
+
+router.delete('/deleteNews', (req,res)=>{
+    const id = req.body.id
+    console.log("/deleteNews : id : ", id)
+    News.findOneAndDelete({_id: id}, (err,result)=>{
+        if(err) return res.status(500).send(err)
+        res.send({message: 'deleted ...'})
+        console.log(result)
+    })
+})
 
 
 module.exports = router
