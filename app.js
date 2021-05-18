@@ -5,7 +5,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const db = require('./db');
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
 
 //const socketio = require('socket.io'); 
 
