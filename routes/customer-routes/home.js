@@ -42,7 +42,7 @@ const getWeather = async (lon, lat) =>{
 }
 
 
-router.get('/', (req, res) =>{
+router.get('/home', (req, res) =>{
 
 	userloc().then((loc)=>{  
         const lon = loc.longitude
@@ -81,6 +81,10 @@ router.get('/about', function (req, res) {
 
 router.get('/contactus', function (req, res) {
 	res.render('contactus', { title: 'contactus' });
+});
+
+router.get('/sports', function (req, res) {
+	res.render('sports', { title: 'Sports' });
 });
 
 module.exports = router;
