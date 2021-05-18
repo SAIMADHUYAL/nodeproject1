@@ -14,9 +14,6 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
 const News = require('../models/adminModels/NewsModel');
-const NewsModel = require('../models/adminModels/NewsModel');
-
-//var list = require('../models/adminModels/NewsModel');
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -186,11 +183,11 @@ router.post('/register', (req,res) => {
             password: hashedPasword,
         }, (err, user) => {
             if(err) return res.status(500).send('There was a problem registering user')
-            htmlMsg = encodeURIComponent('Registered OK !');
+            htmlMsg = encodeURIComponent('User Registered! Login now');
             res.redirect('/?msg=' + htmlMsg)
         })
       }else{ //duplicate
-        htmlMsg = encodeURIComponent('Email existing, please enter a new one ...');
+        htmlMsg = encodeURIComponent('Email is existing, please enter a new one ...');
         res.redirect('/?msg=' + htmlMsg);
       }
     })     
